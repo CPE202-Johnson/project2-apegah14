@@ -28,5 +28,30 @@ class test_expressions(unittest.TestCase):
         except PostfixFormatException as e:
             self.assertEqual(str(e), "Too many operands")
 
+    def test_prefix_to_postfix(self):
+        try:
+            postfix_eval("1 2 3 +")
+            self.fail()
+        except PostfixFormatException as e:
+            self.assertEqual(str(e), "Too many operands")
+
+    def test_prefix_to_postfix(self):
+        try:
+            postfix_eval("1 2 3 +")
+            self.fail()
+        except PostfixFormatException as e:
+            self.assertEqual(str(e), "Too many operands")
+
+    def test_prefix_to_postfix(self):
+        self.assertEqual(prefix_to_postfix("- 5 - -7.1 - 11 3"), "5 -7.1 11 3 - - -")
+'''
+    def test_prefix_to_postfix(self):
+        try:
+            postfix_eval("1 2 3 +")
+            self.fail()
+        except PostfixFormatException as e:
+            self.assertEqual(str(e), "Too many operands")
+            
+            '''
 if __name__ == "__main__":
     unittest.main()
