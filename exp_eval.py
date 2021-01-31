@@ -4,6 +4,8 @@ from stack_array import Stack
 class PostfixFormatException(Exception):
     pass
 
+# string -> float
+# takes in a postfix string and calculates the results, raises format exceptions and errors if input is incorrect
 def postfix_eval(input_str):
     stack = Stack(len(input_str))   # create stack
     postfix_list = input_str.split(" ")     # reformat string into list
@@ -36,12 +38,9 @@ def postfix_eval(input_str):
         raise PostfixFormatException("Too many operands")
     return stack.pop()      # return final answer as the last item in stack
 
+# string -> string
+# takes in a prefix string and converts it to postfix, raises format exceptions and errors if input is incorrect
 def prefix_to_postfix(input_str):
-    '''Converts a prefix expression to an equivalent postfix expression
-    
-    Input argument:  a string containing a prefix expression where tokens are 
-    space separated.  Tokens are either operators + - * / ** >> << parentheses ( ) or numbers
-    Returns a String containing a postfix expression(tokens are space separated)'''
     stack = Stack(len(input_str))  # create stack
     prefix_list = input_str.split(" ")  # reformat string into list
     for item in prefix_list[::-1]:      # reads list in reverse order
@@ -58,4 +57,3 @@ def prefix_to_postfix(input_str):
             except ValueError:
                 raise PostfixFormatException("Invalid token")
     return stack.pop()
-
