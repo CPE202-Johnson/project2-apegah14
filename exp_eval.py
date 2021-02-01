@@ -44,7 +44,7 @@ def prefix_to_postfix(input_str):
     stack = Stack(len(input_str))  # create stack
     prefix_list = input_str.split(" ")  # reformat string into list
     for item in prefix_list[::-1]:      # reads list in reverse order
-        if item == "+" or item == "-" or item == "*" or item == "**" or item == "/":
+        if item == "+" or item == "-" or item == "*" or item == "**" or item == "/" or item == "<<" or item == ">>":
             op1 = stack.pop()
             op2 = stack.pop()
             stack.push("%s %s %s" % (op1, op2, item))
