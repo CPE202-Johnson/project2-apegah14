@@ -1,1 +1,5 @@
-# CPE202-StarterCode-Project2
+# CPE202-Project2
+
+Aria Pegah
+
+Progress: Passes all test cases
