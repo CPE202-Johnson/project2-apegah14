@@ -12,23 +12,23 @@ def postfix_eval(input_str):
     for item in postfix_list:
         if item == "+" or item == "-" or item == "*" or item == "**" or item == "/":
             try:        # try to pop an operand, raise PostfixFormatException if no operands
-                op1 = stack.pop()
                 op2 = stack.pop()
+                op1 = stack.pop()
             except IndexError:
                 raise PostfixFormatException("Insufficient operands")
             # operation conditions
             if item == "+":
-                stack.push(op2 + op1)
+                stack.push(op1 + op2)
             elif item == "-":
-                stack.push(op2 - op1)
+                stack.push(op1 - op2)
             elif item == "*":
-                stack.push(op2 * op1)
+                stack.push(op1 * op2)
             elif item == "**":
-                stack.push(op2 ** op1)
+                stack.push(op1 ** op2)
             elif item == "/":
-                if op1 == "0":
+                if op2 == 0:
                     raise ValueError
-                stack.push(op2 / op1)
+                stack.push(op1 / op2)
         else:
             try:        # try to push operand, raise PostfixFormatException if not a valid operand
                 stack.push(float(item))
@@ -45,15 +45,9 @@ def prefix_to_postfix(input_str):
     prefix_list = input_str.split(" ")  # reformat string into list
     for item in prefix_list[::-1]:      # reads list in reverse order
         if item == "+" or item == "-" or item == "*" or item == "**" or item == "/":
-            try:        # try to pop an operand, raise PostfixFormatException if no operands
-                op1 = stack.pop()
-            except IndexError:
-                raise PostfixFormatException("Invalid token")
+            op1 = stack.pop()
             op2 = stack.pop()
             stack.push("%s %s %s" % (op1, op2, item))
         else:
-            try:        # try to push operand, raise PostfixFormatException if not a valid operand
-                stack.push(item)
-            except ValueError:
-                raise PostfixFormatException("Invalid token")
+            stack.push(item)
     return stack.pop()
